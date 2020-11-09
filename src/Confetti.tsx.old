@@ -1,0 +1,160 @@
+//import { ConfettiComponent } from "./components/ConfettiComponent";
+import { FunctionComponent, createElement, useState, useEffect } from "react";
+import { hot } from "react-hot-loader/root";
+import { ConfettiContainerProps } from "../typings/ConfettiProps";
+//import { ObjectItem } from "mendix";
+//import { getObject } from "@jeltemx/mendix-react-widget-utils";
+//import { ConfettiConfig } from "react-dom-confetti";
+import "./ui/Confetti.css";
+
+const LPConfetti: FunctionComponent<ConfettiContainerProps> = props => 
+{
+    {
+        /*
+        const [loading, setIsLoading] = useState(true);
+        const [objects, setObjects] = useState<ObjectItem[]>([]);
+        const [colors, setColors] = useState<ObjectItem[]>([]);
+        const [config, setConfig] = useState<ConfettiConfig>();
+        const [hash, setHash] = useState<string>();
+        
+
+        useEffect(() => {
+            setIsLoading(props.settings?.status === "loading");
+            setObjects(props.settings?.items || []);
+            
+            setColors(props.colors?.items || []);
+
+
+                getColors(colors).then((colorhashtable) => 
+                {
+                    console.log(`colors : ${colorhashtable}`);
+                    if (objects.length > 0)
+                    {
+                        getHash(objects[0]).then((myhash) =>
+                        {
+                            console.log(`this is the current hash: ${myhash}`);
+                            if (hash != myhash) 
+                            {
+                                console.log('change detected!!');
+                                setHash(myhash);
+                                getSettings(objects[0],colorhashtable).then((myconfig) => 
+                                {
+                                    setConfig(myconfig);
+                                });
+                            }
+
+                        });
+                    }
+                });
+
+            
+            
+        }, [props.settings]);
+        const empty = objects.length === 0;
+        //const colorsempty = colors.length === 0;
+        const noconfig = config === undefined;
+        
+
+
+
+        if (!empty && noconfig)
+        {
+            //getSettings(props.settings?.items?.[0]).then((myconfig) => 
+            getHash(objects[0]).then((myhash) =>
+            {
+                setHash(myhash);
+            });
+            getColors(colors).then((colorhashtable) => 
+            {
+                getSettings(objects[0], colorhashtable).then((myconfig) => 
+                {
+                    setConfig(myconfig);
+                });
+            });
+        }
+        
+        return (
+            <div>
+                {loading && empty && noconfig && <div>Loading confetti...</div>}
+                {!loading && !empty && !noconfig && (<ConfettiComponent active={props.trigger.value!} config={config!} />)}
+            </div>
+        );
+        */
+
+        return (<div>confetti!</div>)
+    }
+
+    /*
+    function getSettings(settingsObject: any, colors: string[]): Promise<ConfettiConfig>
+    {
+
+        return new Promise<ConfettiConfig>((resolve) =>
+        {
+            let guid: string = settingsObject.id.toString()!;
+            let finalConfig: ConfettiConfig = {};
+            getObject(guid).then((item) =>
+            {
+                console.log(item.jsonData.hash);
+                let attr = item.jsonData.attributes;
+                console.log(attr);
+                finalConfig.angle = +attr.angle.value;
+                finalConfig.dragFriction = +attr.dragFriction.value;
+                finalConfig.duration = +attr.duration.value;
+                finalConfig.elementCount = +attr.elementCount.value;
+                finalConfig.height = `${attr.height.value}px`;
+                finalConfig.width = `${attr.width.value}px`;
+                finalConfig.spread = +attr.spread.value;
+                finalConfig.stagger = +attr.stagger.value;
+                finalConfig.startVelocity = +attr.startVelocity.value;
+                if (colors.length) finalConfig.colors = colors;
+                resolve(finalConfig);
+            });
+        });
+    }
+
+    async function getColor(guid: string): Promise<string>
+    {
+        return new Promise<string>((resolve) =>
+        {
+            getObject(guid).then((item) =>
+            {
+                let c = item.jsonData.attributes.colorCode.value;
+                //console.log(c);
+                resolve(c);
+            });
+        });
+    }
+
+    async function getColors(colorList: any[]): Promise<string[]>
+    {
+        let colorArray: string[] = new Array<string>();
+        return new Promise<string[]>(async (resolve) =>
+        {
+            for (let iColor of colorList)
+            {
+                let mycolor: any =  iColor;
+                let guid: string = mycolor.id.toString()!;
+                await getColor(guid).then((mycolor) =>
+                {
+                    colorArray.push(mycolor);
+                });
+            }
+            resolve(colorArray);
+          //  resolve(colorArray);
+        });
+    }
+
+    function getHash(mxobject: any): Promise<string>
+    {
+        return new Promise<string>((resolve) =>
+        {
+            getObject(mxobject.id.toString()!).then((item) =>
+            {
+                resolve(item.jsonData.hash);
+            });
+        });
+    }
+    */
+}
+
+export default hot(LPConfetti);

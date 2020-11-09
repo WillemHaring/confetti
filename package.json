@@ -1,0 +1,40 @@
+{
+  "name": "confetti",
+  "widgetName": "Confetti",
+  "version": "1.0.0",
+  "description": "The Confetti component is a wrapper that adds a series of confetti blasts as a background to the contents passed in as children.",
+  "copyright": "Mendix 2020",
+  "author": "Willem Haring",
+  "config": {
+    "widgetPath": "../..//widgets",
+    "projectPath": "../..//",
+    "mendixHost": "http://localhost:8080",
+    "developmentPort": "3000"
+  },
+  "packagePath": "mendix",
+  "scripts": {
+    "start": "concurrently \"pluggable-widgets-tools start:server --open\" \"npm:dev\"",
+    "dev": "pluggable-widgets-tools start:ts",
+    "build": "pluggable-widgets-tools build:ts",
+    "lint": "pluggable-widgets-tools lint",
+    "lint:fix": "pluggable-widgets-tools lint:fix",
+    "prerelease": "npm run lint",
+    "release": "pluggable-widgets-tools release:ts"
+  },
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@mendix/pluggable-widgets-tools": "^8.15.0",
+    "@types/big.js": "^4.0.5",
+    "@types/classnames": "^2.2.4",
+    "@types/jest": "^24.0.0",
+    "@types/react": "^16.8.17",
+    "@types/react-dom": "^16.8.4",
+    "@types/react-test-renderer": "^16.8.1"
+  },
+  "dependencies": {
+    "@jeltemx/mendix-react-widget-utils": "^0.7.0",
+    "big.js": "^5.2.2",
+    "classnames": "^2.2.6",
+    "react-dom-confetti": "^0.2.0"
+  }
+}
