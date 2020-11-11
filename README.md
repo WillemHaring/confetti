@@ -76,5 +76,6 @@ To setup the runtime configuration as following:
 [link to GitHub issues]
 
 ## Development and contribution
-Build as demonstration by Willem Haring (Mendix)
+- Build as demonstration by Willem Haring (Mendix)
+- Based on [react-dom-confetti](https://github.com/daniel-lundin/react-dom-confetti) by Daniel Lundin
 

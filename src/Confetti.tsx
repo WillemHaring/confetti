@@ -1,7 +1,6 @@
 import { ValueStatus } from "mendix";
 import { Component, createElement } from "react";
 import { ConfettiConfig } from "react-dom-confetti";
-//import { hot } from "react-hot-loader/root";
 import { ConfettiContainerProps } from "../typings/ConfettiProps";
 import { ConfettiComponent } from "./components/ConfettiComponent";
 import { ButtonComponent } from "./components/ButtonComponent";
@@ -31,36 +30,41 @@ export default class Confetti extends Component<ConfettiContainerProps, Confetti
     }
 
     /**
-     * @method componentDidUpdate
+     *
      * @description Whenever someting changes on the Mendix side, this will be called before the render function,
      *              in our case, we only want this to run when the trigger is changing
-     * @param _prevProps set by react, helpfull to compare to earlier setting
-     * @param _prevState set by react, helpfull to compare to earlier setting
+     * @param _nextProps set by react, helpfull to compare to earlier setting
      */
-    componentDidUpdate(_prevProps: any): boolean {
-        if (this.props.triggerButton) {
-            // is the triggerbutton pressed?
-            if (this.state.trigger) {
-                this.setState({ trigger: false });
-            } // If our state is set to pressed, then reset this state, so it only fires one time
-            return true;
+
+    UNSAFE_componentWillReceiveProps(_nextProps: ConfettiContainerProps): boolean {
+        if (this.props.trigger === undefined) {
+            return false;
         }
         if (this.props.trigger!.status === ValueStatus.Loading) {
+            // Is the trigger status available?
             return false;
-        } // Is the trigger status available?
-        if (this.props.trigger!.value === _prevProps.trigger.value) {
+        }
+        if (this.props.trigger!.value === _nextProps.trigger!.value) {
+            // has the trigger value changed?
             return false;
-        } // has the trigger value changed?
-
+        }
         this.setState({
             config: this.getSettings(this.props), // get the settings
-            trigger: this.props.trigger!.value!, // set the trigger for the confetti component
+            trigger: true, // set the trigger for the confetti component
             buttonCaption: this.props.TriggerButtonCaption // set the button caption
         });
-        // console.log(`CF::+componentDidUpdate ${this.props.name} set trigger value to: ${this.props.trigger!.value}`);
-
         return true;
     }
+
+    /**
+     * @description Called after the render function. We check if trigger is set, and will reset it after
+     */
+    componentDidUpdate(): void {
+        if (this.state.trigger) {
+            this.setState({ trigger: false });
+        }
+    }
+
     /** *
      * @method onClick
      * @description when a button is clicked, this is what is called first
@@ -224,4 +228,3 @@ export default class Confetti extends Component<ConfettiContainerProps, Confetti
         return config;
     }
 }
-
