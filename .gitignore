@@ -1,2 +1,6 @@
-node_modules
-confetti.code.-workspace
+confetti.code.-workspace/
+dist/
+node_modules/
+../
+*.log
+.env
